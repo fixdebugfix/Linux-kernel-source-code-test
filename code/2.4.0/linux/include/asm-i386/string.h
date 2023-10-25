@@ -549,14 +549,24 @@ static inline void * memscan(void * addr, int c, size_t size)
 {
 	if (!size)
 		return addr;
+/*
 	__asm__("repnz; scasb
 		jnz 1f
 		dec %%edi
 1:		"
 		: "=D" (addr), "=c" (size)
 		: "0" (addr), "1" (size), "a" (c));
+*/
+  __asm__("repnz; scasb\n\t"
+  	"jnz 1f\n\t"
+  	"dec %%edi\n\t"
+  	"1:\n\t"
+  	: "=D" (addr), "=c" (size)
+  	: "0" (addr), "1" (size), "a" (c));
 	return addr;
 }
+
+
 
 #endif /* CONFIG_X86_USE_STRING_486 */
 #endif /* __KERNEL__ */

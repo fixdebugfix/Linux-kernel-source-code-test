@@ -145,10 +145,10 @@ extern inline void __set_64bit (unsigned long long * ptr,
 		unsigned int low, unsigned int high)
 {
 __asm__ __volatile__ (
-	"1:	movl (%0), %%eax;
-		movl 4(%0), %%edx;
-		cmpxchg8b (%0);
-		jnz 1b"
+	  "1:	movl (%0), %%eax;\n\t"
+		"movl 4(%0), %%edx;\n\t"
+		"cmpxchg8b (%0);\n\t"
+		"jnz 1b\n\t"
 	::		"D"(ptr),
 			"b"(low),
 			"c"(high)

@@ -735,7 +735,7 @@ static int do_proc_dointvec(ctl_table *table, int write, struct file *filp,
 				if (!isspace(c))
 					break;
 				left--;
-				((char *) buffer)++;
+				buffer = (char *) buffer + 1;//((char *) buffer)++;
 			}
 			if (!left)
 				break;
@@ -835,7 +835,7 @@ int proc_dointvec_minmax(ctl_table *table, int write, struct file *filp,
 {
 	int *i, *min, *max, vleft, first=1, len, left, neg, val;
 	#define TMPBUFLEN 20
-	char buf[TMPBUFLEN], *p;
+	char buf[TMPBUFLEN], *p; 
 	
 	if (!table->data || !table->maxlen || !*lenp ||
 	    (filp->f_pos && !write)) {
@@ -858,7 +858,7 @@ int proc_dointvec_minmax(ctl_table *table, int write, struct file *filp,
 				if (!isspace(c))
 					break;
 				left--;
-				((char *) buffer)++;
+				buffer = (char *) buffer + 1;//((char *) buffer)++;
 			}
 			if (!left)
 				break;
@@ -964,7 +964,7 @@ static int do_proc_doulongvec_minmax(ctl_table *table, int write,
 				if (!isspace(c))
 					break;
 				left--;
-				((char *) buffer)++;
+				buffer = (char *) buffer + 1;//((char *) buffer)++;
 			}
 			if (!left)
 				break;

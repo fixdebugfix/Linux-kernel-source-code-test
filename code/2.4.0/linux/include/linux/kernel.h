@@ -40,7 +40,8 @@
 # define NORET_AND     noreturn,
 
 #ifdef __i386__
-#define FASTCALL(x)	x __attribute__((regparm(3)))
+/*#define FASTCALL(x)	x __attribute__((regparm(3)))*/
+#define FASTCALL(x)	x
 #else
 #define FASTCALL(x)	x
 #endif

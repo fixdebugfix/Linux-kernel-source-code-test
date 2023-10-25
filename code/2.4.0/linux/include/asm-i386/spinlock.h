@@ -5,8 +5,8 @@
 #include <asm/rwlock.h>
 #include <asm/page.h>
 
-extern int printk(const char * fmt, ...)
-	__attribute__ ((format (printf, 1, 2)));
+//extern asmlinkage int printk(const char * fmt, ...)
+//	__attribute__ ((format (printf, 1, 2)));
 
 /* It seems that people are forgetting to
  * initialize their spinlocks properly, tsk tsk.
@@ -81,7 +81,7 @@ static inline void spin_lock(spinlock_t *lock)
 	__label__ here;
 here:
 	if (lock->magic != SPINLOCK_MAGIC) {
-printk("eip: %p\n", &&here);
+//printk("eip: %p\n", &&here);
 		BUG();
 	}
 #endif
